@@ -20,6 +20,62 @@
 </head>
 
 <body>
+    <script src=https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js></script>
+    <script src=https://www.gstatic.com/firebasejs/9.5.0/firebase-aut.js></script>
+    <script src=https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js></script>
+    
+    <script id="Mainscript" type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA7Bl_UqAQOJlR3TE2JjJ0c__3BPJc7Jts",
+    authDomain: "iotec-6dfa9.firebaseapp.com",
+    databaseURL: "https://iotec-6dfa9-default-rtdb.firebaseio.com",
+    projectId: "iotec-6dfa9",
+    storageBucket: "iotec-6dfa9.appspot.com",
+    messagingSenderId: "418276281107",
+    appId: "1:418276281107:web:1a09e7b81a1b47e3d668e6"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
+  import{getDatabase, ref, set, child, update, remove}
+  from "https://iotec-6dfa9-default-rtdb.firebaseio.com";
+  const db = getDatabase();
+var stdNo=0;
+
+function addItemsToTable(humedad, temperatura){
+    var u1=document.getElementById('list');
+    let _humedad= document.createElement('h2');
+    let _temperatura= document.createElement('h2');
+    var header= document.createElement('h2');
+    header.innerHTML='Parámetros';
+    _humedad.innerHTML='Humedad Actual: '+humedad;
+    _temperatura.innerHTML='Temperatura Actual: '+_temperatura;
+    ul.appendChild(header);
+    ul.appendChild(_humedad);
+    ul.appendChild(_temperatura);
+}
+function FetchAllData(){
+    firebase.database().ref('FuncionaPls').once('value',function(snapshot){
+        snapshot.forEach(
+            function(ChildSnapshot){
+                let humedad = ChildSnapshot.val().humedad;
+                let temperatura = ChildSnapshot.val().temperatura;
+                addItemsToList(humedad,temperatura);
+            }
+        )
+    })
+}
+window.onload=(FetchAllData());
+    </script>
+
     <header>
         <section class="textos-header">
             <h1></h1>
@@ -33,7 +89,7 @@
     </header>
     <main>
         <section class="contenedor sobre-nosotros">
-            <h2 class="titulo">Nuestro producto</h2>
+            <h2 class="titulo">Nuestro Producto</h2>
             <div class="contenedor-sobre-nosotros"></div>
             <img src="img/riego.jfif" alt="" class="imagen-about-us">
             <div class="contenido-textos">
@@ -70,7 +126,7 @@
             </div>
         </section>
         <section class="clientes contenedor">
-            <h2 class="titulo">Que dicen nuestros clientes</h2>
+            <h2 class="titulo">¿Qué dicen nuestros clientes?</h2>
             <div class="client">
                 <div class="clients">
                     <img src="img/clientes.jpg" alt="">
@@ -137,6 +193,9 @@
              </div>
         </section>
     </main>
+    <ul>
+        
+    </ul>
     <Footer>
         <div class="contenedor-footer">
             <div class="content-foo">
